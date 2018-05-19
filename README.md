@@ -1,5 +1,5 @@
 # ArtMath
-Entry for Expo Hacks.
+Entry for [Expo Hacks](http://trivalleyyouthexpo.com/hackathon.html).
 
 ## Inspiration
 We wanted to create art using computer algorithms to inspire today's artists.
