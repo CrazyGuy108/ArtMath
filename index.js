@@ -40,8 +40,7 @@ function updateOptions(dropdown)
     // hide all options except the current art type's options
     for (optionGroup of options.children)
     {
-        if (optionGroup.id == `${artType}Options` ||
-            optionGroup.id == `${artType}Type`)
+        if (optionGroup.id == `${artType}Options`)
         {
             if (optionGroup.classList.contains("hidden"))
             {
