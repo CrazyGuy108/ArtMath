@@ -82,6 +82,9 @@ function drawArt()
         case "colorSierpinski":
             drawColorSierpinski();
             break;
+        case "stretchedSierpinski":
+            drawStretchedSierpinski();
+            break;
     }
 }
 
@@ -115,6 +118,26 @@ function drawColorSierpinski()
         {
             context.fillStyle = `rgb(${j^j-i^i}, ${(i - dim)^2 + (j - dim)^2}, ${i^i-j^j})`;
             context.fillRect(i, j, 1, 1);
+        }
+    }
+}
+
+/**
+ * Draws a 3d stretched sierpinski fractal.
+ */
+function drawStretchedSierpinski()
+{
+    const zoomOut = parseInt(document.getElementById(
+            "stretchedSierpinskiZoomOut").value, 10);
+
+    for (let i = 0; i < canvas.width * zoomOut; i += zoomOut)
+    {
+        for (let j = 0; j < canvas.height * zoomOut; j += zoomOut)
+        {
+            context.fillStyle = `rgb(${i && j ? (i % j) & (j % i) : 0}, ` +
+                    `${i && j ?(i % j) + (j % i) : 0}, ` +
+                    `${i && j ? (i % j) | (j % i) : 0})`;
+            context.fillRect(i / zoomOut, j / zoomOut, 1, 1);
         }
     }
 }
