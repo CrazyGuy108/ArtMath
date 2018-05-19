@@ -1,3 +1,26 @@
+window.onload = init;
+
+/**
+ * Canvas element.
+ * @type {HTMLElement}
+ */
+let canvas;
+
+/**
+ * Canvas context.
+ * @type {CanvasRenderingContext2D}
+ */
+let context;
+
+/**
+ * Does all initialization steps.
+ */
+function init()
+{
+    canvas = document.getElementById("canvas");
+    context = canvas.getContext("2d");
+}
+
 // options from dropdown menu
 const artOptions = {};
 
@@ -59,15 +82,25 @@ function updateFractalOptions(dropdown)
 }
 
 /**
+ * Clears the canvas.
+ */
+function clearCanvas()
+{
+    context.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+/**
  * Draws the selected art type on the canvas.
  */
 function drawArt()
 {
-    clearCanvas();
+    // make sure the canvas is blank first
+    clearCanvas(canvas, context);
+
     switch (artOptions.type)
     {
         case "fractal":
-            drawFractal();
+            drawFractal(canvas, context);
             break;
     }
 }
@@ -80,7 +113,7 @@ function drawFractal()
     switch (artOptions.fractalType)
     {
         case "tree":
-            drawTreeFractal();
+            drawTreeFractal(canvas, context);
             break;
     }
 }
@@ -88,7 +121,7 @@ function drawFractal()
 /**
  * Draws a tree fractal on the canvas.
  */
-function drawTreeFractal(treeOptions)
+function drawTreeFractal()
 {
     // get options from the DOM
     const depth = parseFloat(document.getElementById("treeDepth").value);
