@@ -129,3 +129,27 @@ function drawTreeFractal()
     const angle2 = parseFloat(document.getElementById("treeAngle2").value);
     // TODO
 }
+
+function drawColorSierpinski()
+{
+    const DIM = 1024;
+    var fractals =
+    {
+        oc:
+        {
+            r: (i, j) => j^j-i^i,
+            g: (i, j) => (i-DIM)^2+(j-DIM)^2,
+            b: (i, j) => i^i-j^j
+        }
+    };
+    var f = fractals.oc;
+
+    for (let i = 0; i < canvas.width; i++)
+    {
+        for (let j = 0; j < canvas.height; j++)
+        {
+            context.fillStyle = `rgb(${f.r(i, j)}, ${f.g(i, j)}, ${f.b(i, j)})`;
+            context.fillRect(i, j, 1, 1);
+        }
+    }
+}
