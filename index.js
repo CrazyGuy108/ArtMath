@@ -127,8 +127,8 @@ function drawColorSierpinski()
  */
 function drawStretchedSierpinski()
 {
-    const zoomOut = parseInt(document.getElementById(
-            "stretchedSierpinskiZoomOut").value, 10);
+    const zoomOut = parseFloat(document.getElementById(
+            "stretchedSierpinskiZoomOut").value);
 
     for (let i = 0; i < canvas.width * zoomOut; i += zoomOut)
     {
