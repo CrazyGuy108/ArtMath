@@ -109,22 +109,11 @@ function drawColorSierpinski()
 {
     const dim = parseInt(document.getElementById("colorSierpinskiDim").value,
         10);
-    var fractals =
-    {
-        oc:
-        {
-            r: (i, j) => j^j-i^i,
-            g: (i, j) => (i-dim)^2+(j-dim)^2,
-            b: (i, j) => i^i-j^j
-        }
-    };
-    var f = fractals.oc;
-
     for (let i = 0; i < canvas.width; i++)
     {
         for (let j = 0; j < canvas.height; j++)
         {
-            context.fillStyle = `rgb(${f.r(i, j)}, ${f.g(i, j)}, ${f.b(i, j)})`;
+            context.fillStyle = `rgb(${j^j-i^i}, ${(i - dim)^2 + (j - dim)^2}, ${i^i-j^j})`;
             context.fillRect(i, j, 1, 1);
         }
     }
