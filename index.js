@@ -102,7 +102,42 @@ function drawTree()
     const depth = parseFloat(document.getElementById("treeDepth").value);
     const angle1 = parseFloat(document.getElementById("treeAngle1").value);
     const angle2 = parseFloat(document.getElementById("treeAngle2").value);
-    // TODO
+
+    /**
+     * Tree recursive draw function.
+     *
+     * @param {number} depth Maximum level of recursion.
+     * @param {number} startX X coordinate of branch.
+     * @param {number} startY Y coordinate of branch.
+     * @param {number} len Length of branch.
+     * @param {number} angle Angle offset of branch.
+     */
+    function draw(depth, startX, startY, len, angle)
+    {
+        // save current context settings
+        context.beginPath();
+        context.save();
+
+        // create a single branch
+        context.translate(startX, startY);
+        context.rotate(angle * Math.PI/180);
+        context.moveTo(0, 0);
+        context.lineTo(0, -len);
+        context.stroke();
+
+        // exit condition: hit depth limit
+        if (depth > 0)
+        {
+            // tree recursion
+            draw(depth - 1, 0, -len, len * 0.8, angle1);
+            draw(depth - 1, 0, -len, len * 0.8, angle2);
+        }
+
+        // restore previous context settings
+        context.restore();
+    }
+
+    draw(depth, canvas.width / 2, canvas.height, canvas.height / 5, 0);
 }
 
 /**
