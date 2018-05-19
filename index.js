@@ -128,6 +128,7 @@ function drawTreeFractal()
     const angle1 = parseFloat(document.getElementById("treeAngle1").value);
     const angle2 = parseFloat(document.getElementById("treeAngle2").value);
     // TODO
+    drawTree(350,600,120,0);
 }
 
 function drawColorSierpinski()
@@ -152,4 +153,26 @@ function drawColorSierpinski()
             context.fillRect(i, j, 1, 1);
         }
     }
+}
+
+function drawTree(startX, startY, len, angle)
+{
+    context.beginPath();
+    context.save();
+
+    context.translate(startX, startY);
+    context.rotate(angle * Math.PI/180);
+    context.moveTo(0, 0);
+    context.lineTo(0, -len);
+    context.stroke();
+
+    if(len < 10) {
+        context.restore();
+        return;
+    }
+
+    draw(0, -len, len*0.8, -15);
+    draw(0, -len, len*0.8, 15);
+
+    context.restore();
 }
