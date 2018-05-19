@@ -21,8 +21,11 @@ function init()
     context = canvas.getContext("2d");
 }
 
-// options from dropdown menu
-const artOptions = {};
+/**
+ * Type of art to make.
+ * @type {string}
+ */
+let artType = "none";
 
 /**
  * Updates the art type options.
@@ -32,42 +35,13 @@ const artOptions = {};
 function updateOptions(dropdown)
 {
     const options = dropdown.nextElementSibling;
-    const artType = dropdown.value;
-    artOptions.type = artType;
+    artType = dropdown.value;
 
     // hide all options except the current art type's options
     for (optionGroup of options.children)
     {
         if (optionGroup.id == `${artType}Options` ||
             optionGroup.id == `${artType}Type`)
-        {
-            if (optionGroup.classList.contains("hidden"))
-            {
-                optionGroup.classList.remove("hidden");
-            }
-        }
-        else if (!optionGroup.classList.contains("hidden"))
-        {
-            optionGroup.classList.add("hidden");
-        }
-    }
-}
-
-/**
- * Updates the fractal type options.
- *
- * @param {HTMLElement} dropdown Dropdown menu for fractal type.
- */
-function updateFractalOptions(dropdown)
-{
-    const options = dropdown.nextElementSibling;
-    const fractalType = dropdown.value;
-    artOptions.fractalType = fractalType;
-
-    // hide all options except the current fractal type's options
-    for (let optionGroup of options.children)
-    {
-        if (optionGroup.id == `${fractalType}Options`)
         {
             if (optionGroup.classList.contains("hidden"))
             {
@@ -101,25 +75,7 @@ function drawArt()
     // make sure the canvas is blank first
     clearCanvas();
 
-    switch (artOptions.type)
-    {
-        case "fractal":
-            drawFractal();
-            break;
-    }
-}
-
-/**
- * @name Art types
- * @{
- */
-
-/**
- * Draws the selected fractal type on the canvas.
- */
-function drawFractal()
-{
-    switch (artOptions.fractalType)
+    switch (artType)
     {
         case "tree":
             drawTree();
@@ -131,8 +87,7 @@ function drawFractal()
 }
 
 /**
- * @}
- * @name Fractals
+ * @name Art types
  * @{
  */
 
