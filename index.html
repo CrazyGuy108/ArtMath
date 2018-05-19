@@ -17,12 +17,19 @@
                 <select id="fractalType" class="hidden" autocomplete="off" onchange="updateFractalOptions(this);">
                     <option value="none" selected="selected">Choose fractal type</option>
                     <option value="tree">Tree</option>
+                    <option value="colorSierpinski">Color Sierpinski</option>
                 </select>
                 <div id="fractalOptions" class="hidden">
                     <div id="treeOptions" class="hidden">
-                        Depth: <input type="text" id="treeDepth" value=5></input>
-                        Angle offsets: <input type="text" id="treeAngle1" value=-30></input>
+                        Depth:
+                        <input type="text" id="treeDepth" value=5></input>
+                        Angle offsets:
+                        <input type="text" id="treeAngle1" value=-30></input>
                         <input type="text" id="treeAngle2" value=15></input>
+                    </div>
+                    <div id="colorSierpinskiOptions" class="hidden">
+                        Dim:
+                        <input type="text" id="colorSierpinskiDim" value=1024></input>
                     </div>
                 </div>
             </div>

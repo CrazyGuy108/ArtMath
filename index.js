@@ -86,6 +86,10 @@ function updateFractalOptions(dropdown)
  */
 function clearCanvas()
 {
+    // reset the transformation matrix
+    context.setTransform(1, 0, 0, 1, 0, 0);
+
+    // clear everything
     context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
@@ -95,15 +99,20 @@ function clearCanvas()
 function drawArt()
 {
     // make sure the canvas is blank first
-    clearCanvas(canvas, context);
+    clearCanvas();
 
     switch (artOptions.type)
     {
         case "fractal":
-            drawFractal(canvas, context);
+            drawFractal();
             break;
     }
 }
+
+/**
+ * @name Art types
+ * @{
+ */
 
 /**
  * Draws the selected fractal type on the canvas.
@@ -113,15 +122,24 @@ function drawFractal()
     switch (artOptions.fractalType)
     {
         case "tree":
-            drawTreeFractal(canvas, context);
+            drawTree();
+            break;
+        case "colorSierpinski":
+            drawColorSierpinski();
             break;
     }
 }
 
 /**
+ * @}
+ * @name Fractals
+ * @{
+ */
+
+/**
  * Draws a tree fractal on the canvas.
  */
-function drawTreeFractal()
+function drawTree()
 {
     // get options from the DOM
     const depth = parseFloat(document.getElementById("treeDepth").value);
@@ -130,15 +148,19 @@ function drawTreeFractal()
     // TODO
 }
 
+/**
+ * Draws a cool colored sierpinski fractal.
+ */
 function drawColorSierpinski()
 {
-    const DIM = 1024;
+    const dim = parseInt(document.getElementById("colorSierpinskiDim").value,
+        10);
     var fractals =
     {
         oc:
         {
             r: (i, j) => j^j-i^i,
-            g: (i, j) => (i-DIM)^2+(j-DIM)^2,
+            g: (i, j) => (i-dim)^2+(j-dim)^2,
             b: (i, j) => i^i-j^j
         }
     };
@@ -153,3 +175,5 @@ function drawColorSierpinski()
         }
     }
 }
+
+/** @} */
