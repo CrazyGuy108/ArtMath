@@ -22,7 +22,9 @@ We weren't too familiar with JavaScript and we didn't have experience with fract
 * How to use the HTML5 Canvas feature.
 
 ## What's next for ArtMath
-More unique and cooler types of computer art.
+* More unique and cooler types of computer-generated art.
+* Randomization of parameters.
+* Improved Mondrian algorithm.
 
 ## Credits
 Credit to [this Stackexchange post](https://codegolf.stackexchange.com/questions/35569/tweetable-mathematical-art) for ideas on some algorithms.
