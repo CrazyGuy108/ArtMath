@@ -103,6 +103,13 @@ function drawTree()
     const angle1 = parseFloat(document.getElementById("treeAngle1").value);
     const angle2 = parseFloat(document.getElementById("treeAngle2").value);
 
+    // setup linear color interpolation from brown to green
+    const startColor = { r: 139, g: 69, b: 19 };
+    const endColor = { r: 0, g: 255, b: 0 };
+    const dr = (endColor.r - startColor.r) / depth;
+    const dg = (endColor.g - startColor.g) / depth;
+    const db = (endColor.b - startColor.b) / depth;
+
     /**
      * Tree recursive draw function.
      *
@@ -111,8 +118,9 @@ function drawTree()
      * @param {number} startY Y coordinate of branch.
      * @param {number} len Length of branch.
      * @param {number} angle Angle offset of branch.
+     * @param {Color} color Color of branch.
      */
-    function draw(depth, startX, startY, len, angle)
+    function draw(depth, startX, startY, len, angle, color)
     {
         // save current context settings
         context.beginPath();
@@ -123,21 +131,23 @@ function drawTree()
         context.rotate(angle * Math.PI/180);
         context.moveTo(0, 0);
         context.lineTo(0, -len);
+        context.strokeStyle = `rgb(${color.r|0},${color.g|0},${color.b|0})`;
         context.stroke();
 
         // exit condition: hit depth limit
         if (depth > 0)
         {
             // tree recursion
-            draw(depth - 1, 0, -len, len * 0.8, angle1);
-            draw(depth - 1, 0, -len, len * 0.8, angle2);
+            color = { r: color.r + dr, g: color.g + dg, b: color.b + db };
+            draw(depth - 1, 0, -len, len * 0.8, angle1, color);
+            draw(depth - 1, 0, -len, len * 0.8, angle2, color);
         }
 
         // restore previous context settings
         context.restore();
     }
 
-    draw(depth, canvas.width / 2, canvas.height, canvas.height / 5, 0);
+    draw(depth, canvas.width / 2, canvas.height, canvas.height / 5, 0, startColor);
 }
 
 /**

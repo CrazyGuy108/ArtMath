@@ -15,6 +15,7 @@ We weren't too familiar with JavaScript and we didn't have experience with fract
 
 ## Accomplishments that we're proud of
 * Dropdown menu to select certain options.
+* Creating a tree fractal with linear color interpolation.
 
 ## What we learned
 * Fractals are a lot more complex than they look.
