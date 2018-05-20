@@ -145,14 +145,17 @@ function drawTree()
  */
 function drawColorSierpinski()
 {
+    const zoomOut = parseFloat(document.getElementById(
+            "colorSierpinskiZoomOut").value);
     const dim = parseInt(document.getElementById("colorSierpinskiDim").value,
         10);
-    for (let i = 0; i < canvas.width; i++)
+
+    for (let i = 0; i < canvas.width * zoomOut; i += zoomOut)
     {
-        for (let j = 0; j < canvas.height; j++)
+        for (let j = 0; j < canvas.height * zoomOut; j += zoomOut)
         {
             context.fillStyle = `rgb(${j^j-i^i}, ${(i - dim)^2 + (j - dim)^2}, ${i^i-j^j})`;
-            context.fillRect(i, j, 1, 1);
+            context.fillRect(i / zoomOut, j / zoomOut, 1, 1);
         }
     }
 }
